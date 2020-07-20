@@ -1,0 +1,34 @@
+<table class="table table-hover mt-3" *ngIf="cartList.length; else emptyCart">
+  <thead>
+  <tr>
+    <th scope="col">PRODUCT</th>
+    <th scope="col">QUANTITY</th>
+    <th scope="col">TOTAL</th>
+    <th scope="col">ACTION</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let item of cartList; let i = index">
+    <td class="w-50">
+      <h5>{{item.name}}</h5>
+      <p>{{item.label}}</p>
+    </td>
+    <td>
+      <div class="input-group w-50 justify-content-center">
+        <button type="button" class="btn btn-danger" (click)="decreaseItem(item)">-</button>
+        <input type="text" class="form-control text-center ml-1 mr-1" [(ngModel)]="item.quantity" (ngModelChange)="changeQuantity($event, item)">
+        <button type="button" class="btn btn-success" (click)="increaseItem(item)">+</button>
+      </div>
+    </td>
+    <td>{{item.price * item.quantity | currency}}</td>
+    <td><span class="badge badge-danger" role="button" (click)="deleteItem(item)">X</span></td>
+  </tr>
+  <tr>
+    <td><a routerLink="/">Go shopping</a></td>
+    <td></td>
+    <td>Sum Total</td>
+    <td>{{sum | currency}}</td>
+  </tr>
+  </tbody>
+</table>
+<ng-template #emptyCart><p class="cartEmpty">YOUR CART IS EMPTY</p></ng-template>

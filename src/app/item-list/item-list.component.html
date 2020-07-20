@@ -1,0 +1,12 @@
+<h3 class="section-title text-center">Products</h3>
+<div class="card-columns">
+    <div class="card" *ngFor="let item of items">
+        <img class="card-img-top" src="https://picsum.photos/286/180" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">{{item.name}}</h5>
+            <p class="card-text">{{item.label}}</p>
+            <p class="badge badge-light w-100">{{item.price | currency}}</p>
+            <button class="btn btn-secondary btn-sm btn-block" (click)="addToCart(item)">Add to cart</button>
+        </div>
+    </div>
+</div>
